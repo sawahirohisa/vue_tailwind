@@ -19,12 +19,9 @@
       <div class="flex flex-row flex-1 h-[calc(100vh-80px)]">
         <div class="bg-white flex flex-col w-64 overflow-y-scroll">
 
-          <div class="flex items-start">
-            <div class="flex-1 bg-white rounded-[16px] border-2 border-[#E5E7EB]  m-10 flex p-5">
-              <div class="ml-[10px] justify-center bg-[#5E6167] text-[13px] font- font-normal leading-[32px] flex-wrap">
-                検索</div>
-            </div>
-          </div>
+          <input type="text" placeholder="検索" class="rounded-2xl m-2 p-3  border-gray-300 border-solid border-2 bg-white">
+   
+            
 
           <div class="flex-1 flex flex-col">
 
@@ -190,7 +187,7 @@
 
 
           <div class="mt-1 mb-1 flex p-1 flex-row justify-end">
-
+            <input type="text" placeholder="メッセージ" class="flex flex-1 text-gray-600 rounded-xl bg-[#eaeaea] p-3.5 m-2.5">
 
             <svg class="ml-1 mr-5 mt-2 cursor-pointer " width="59" height="59" viewBox="0 0 59 59" fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -204,12 +201,12 @@
 
 
 
-        <div class="w-72 bg-white pl-2.5 flex  items-start overflow-y-scroll flex-col gap-[16px]">
+        <div class="w-80 bg-white pl-2.5 flex  items-start overflow-y-scroll flex-col gap-[16px]">
 
           <div class="w-44 text-black text-lg font-sans font-normal leading-7 break-words">
             伊藤</div>
           <img class="w-64 rounded-xl" src="https://via.placeholder.com/272x257" />
-          <div class="w-40 text-black text-lg font-sans font-normal leading-6 break-words">
+          <div class="w-40 text-black text-lg font-sans font-normal leading-6">
             2021年9月22日に参加</div>
           <div class="w-52 text-black text-lg font-sans font-normal leading-6 break-words">
             こんにちは、伊藤です。趣味は音楽鑑賞、旅行、そして料理です。幼少期から音楽に興味を持ち、ピアノとギターを演奏することができます。</div>
