@@ -1,4 +1,3 @@
-<!-- src/components/MyComponent.vue -->
 <template>
   <body>
     <div class="h-[100vh] flex bg-[#9e8137] flex-col">
@@ -218,7 +217,5 @@
 </template>
   
 <style scoped>
-/* 既存のCSSコードをここに挿入 */
-/* もし scoped を使用する場合、コンポーネント内のみにスタイルが適用されます */
 </style>
   
