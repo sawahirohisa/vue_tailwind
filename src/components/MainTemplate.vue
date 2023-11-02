@@ -1,3 +1,32 @@
+<script setup>
+const messageList = [
+  {
+    name: "佐藤",
+    lastMessage: "またね"
+  },
+  {
+    name: "佐藤1",
+    lastMessage: "またね1"
+  },
+  {
+    name: "佐藤2",
+    lastMessage: "またね2"
+  },
+  {
+    name: "佐藤3",
+    lastMessage: "またね3"
+  },
+  {
+    name: "佐藤4",
+    lastMessage: "またね4"
+  },
+  {
+    name: "佐藤5",
+    lastMessage: "またね5"
+  },
+]
+</script>
+
 <template>
   <body>
     <div class="h-[100vh] flex bg-[#9e8137] flex-col">
@@ -19,84 +48,25 @@
         <div class="bg-white flex flex-col w-64 overflow-y-scroll">
 
           <input type="text" placeholder="検索" class="rounded-2xl m-2 p-3  border-gray-300 border-solid border-2 bg-white">
-   
-            
+
+
 
           <div class="flex-1 flex flex-col">
 
-            <div class="flex bg-gray-300 ml-1 mr-1 p-px"></div>
+            <div v-for="item in messageList" class="flex flex-col">
+              <div class="flex bg-gray-300 ml-1 mr-1 p-px"></div>
 
-            <div class="cursor-pointer flex p-2.5 hover:bg-gray-300">
-              <div class="flex items-center p-2.5">
-                <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/51x48" />
-              </div>
-              <div class="flex-1 flex flex-col justify-center">
-                <div class="text-black text-lg font-sans not-italic font-normal leading-7">佐藤</div>
-                <div class="text-gray-600 text-base font-sans not-italic font-normal leading-6">またね</div>
-              </div>
-            </div>
-
-            <div class="p-px bg-gray-300 ml-1 mr-1"></div>
-
-            <div class="cursor-pointer flex p-2.5 hover:bg-gray-300">
-              <div class="flex items-center p-2.5">
-                <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/51x48" />
-              </div>
-              <div class="flex-1 flex flex-col justify-center">
-                <div class="text-black text-lg font-sans not-italic font-normal leading-7">鈴木</div>
-                <div class="text-gray-600 text-base font-sans not-italic font-normal leading-6">おはよう</div>
+              <div class="cursor-pointer flex p-2.5 hover:bg-gray-300">
+                <div class="flex items-center p-2.5">
+                  <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/51x48" />
+                </div>
+                <div class="flex-1 flex flex-col justify-center">
+                  <div class="text-black text-lg font-sans not-italic font-normal leading-7">{{ item.name }}</div>
+                  <div class="text-gray-600 text-base font-sans not-italic font-normal leading-6">{{ item.lastMessage}}</div>
+                </div>
               </div>
             </div>
 
-            <div class="p-px bg-gray-300 ml-1 mr-1"></div>
-
-            <div class="cursor-pointer flex p-2.5 hover:bg-gray-300">
-              <div class="flex items-center p-2.5">
-                <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/51x48" />
-              </div>
-              <div class="flex-1 flex flex-col justify-center">
-                <div class="text-black font-sans text-lg not-italic font-normal leading-7">伊藤</div>
-                <div class="text-gray-600 text-base font-sans not-italic font-normal leading-6">それは素晴らしい</div>
-              </div>
-            </div>
-
-            <div class="p-px bg-gray-300 ml-1  mr-1"></div>
-
-            <div class="cursor-pointer flex p-2.5 hover:bg-gray-300">
-              <div class="flex items-center p-2.5">
-                <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/51x48" />
-              </div>
-              <div class="flex-1 flex flex-col justify-center">
-                <div class="text-black font-sans text-lg not-italic font-normal leading-7">山本</div>
-                <div class="text-gray-600  font-sans text-base not-italic font-normal leading-6">また</div>
-              </div>
-            </div>
-
-            <div class="p-px bg-gray-300 ml-1 mr-1"></div>
-
-            <div class="cursor-pointer flex p-2.5 hover:bg-gray-300">
-              <div class="flex items-center p-2.5">
-                <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/51x48" />
-              </div>
-              <div class="flex-1 flex flex-col justify-center">
-                <div class="text-black font-sans text-lg not-italic font-normal leading-7">中村</div>
-                <div class="text-gray-600 font-sans text-base not-italic font-normal leading-6">また</div>
-              </div>
-            </div>
-
-            <div class="p-px bg-gray-300 ml-1 mr-1"></div>
-
-            <div class="cursor-pointer flex p-2.5 hover:bg-gray-300">
-              <div class="flex items-center; p-2.5">
-                <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/51x48" />
-              </div>
-              <div class="flex-1 flex flex-col justify-center">
-                <div class="text-black font-sans text-lg not-italic font-normal leading-7">加藤</div>
-                <div class="text-gray-600 font-sans text-base not-itaric font-normal leading-6">また</div>
-              </div>
-            </div>
-
-            <div class="p-px bg-gray-300 ml-1 mr-1"></div>
           </div>
 
 
@@ -216,6 +186,5 @@
   </body>
 </template>
   
-<style scoped>
-</style>
+<style scoped></style>
   
