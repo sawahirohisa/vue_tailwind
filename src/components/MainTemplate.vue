@@ -1,37 +1,43 @@
 <script setup>
-const messageList = [
+  const messageList = [
   {
     name: "佐藤",
     lastMessage: "またね"
   },
   {
-    name: "佐藤1",
-    lastMessage: "またね1"
+    name: "鈴木",
+    lastMessage: "おはよう"
   },
   {
-    name: "佐藤2",
-    lastMessage: "またね2"
+    name: "伊藤",
+    lastMessage: "それは素晴らしい"
   },
   {
-    name: "佐藤3",
-    lastMessage: "またね3"
+    name: "山本",
+    lastMessage: "また"
   },
   {
-    name: "佐藤4",
-    lastMessage: "またね4"
+    name: "中村",
+    lastMessage: "また"
   },
   {
-    name: "佐藤5",
-    lastMessage: "またね5"
-  },
+    name: "加藤",
+    lastMessage: "また"
+  }
+]
+const chatMessages = [
+  {sender: 'right',type:'text',text:'こんにちは！元気ですか？'},
+  {sender:'left',type:'text',text:'こんにちは！元気だよ。最近新しい趣味を見つけて、ゆっくり楽しんでいます。最初は料理を習い始めました。料理は楽しくて創造的で、新しいレシピを試してみるのは楽しいです。君は何か新しいことを始めたことがありますか？'},
+  {sender:'right',type:'text',text:'それは素晴らしいですね！週末に何を計画していますか？'},
+  {sender:'right',type:'text',text:'週末には映画を見に行くつもりです。君も一緒に来ない？'},
+  {sender:'left',type:'text',text:'それは素晴らしいアイデアです！私も行きたい。'}
 ]
 </script>
-
 <template>
   <body>
     <div class="h-[100vh] flex bg-[#9e8137] flex-col">
       <div class="bg-white flex justify-between p-2 h-20">
-        <h4 class="flex pl-5 items-center">チャット</h4>
+        <p class="flex pl-5 items-center text-[18px]">チャット</p>
         <div class="flex justify-center items-center pr-5">
           <svg width="52" height="49" viewBox="0 0 52 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -53,7 +59,7 @@ const messageList = [
 
           <div class="flex-1 flex flex-col">
 
-            <div v-for="item in messageList" class="flex flex-col">
+            <div v-for="item in messageList" :key="item" class="flex flex-col">
               <div class="flex bg-gray-300 ml-1 mr-1 p-px"></div>
 
               <div class="cursor-pointer flex p-2.5 hover:bg-gray-300">
@@ -62,11 +68,12 @@ const messageList = [
                 </div>
                 <div class="flex-1 flex flex-col justify-center">
                   <div class="text-black text-lg font-sans not-italic font-normal leading-7">{{ item.name }}</div>
-                  <div class="text-gray-600 text-base font-sans not-italic font-normal leading-6">{{ item.lastMessage}}</div>
+                  <div class="text-gray-600 text-base font-sans not-italic font-normal leading-6">{{ item.lastMessage }}</div>
                 </div>
               </div>
+             
             </div>
-
+            
           </div>
 
 
@@ -75,81 +82,47 @@ const messageList = [
 
 
         <div class="flex-1 bg-white flex flex-col h-[calc(100vh-80px)]">
+
           <div class="overflow-y-scroll flex p-2.5 flex-col flex-1">
 
 
             <div class="justify-end">
-              <div class="flex p-1">
-                <div class="flex-1 flex justify-end">
-                  <div class="bg-blue-400 rounded-tr-xl rounded-bl-3xl rounded-tl-3xl  p-3 justify-center items-center">
-                    <div class="text-white text-base font-normal font-sans break-words leading-6 items-center">
-                      こんにちは！元気ですか？</div>
-                  </div>
-                </div>
-                <div class="flex items-center p-2.5 justify-between">
-                  <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/34x31" />
-                </div>
-              </div>
-            </div>
 
-            <div class="justify-end">
-              <div class="flex p-1">
-                <div class="flex items-center p-2.5 justify-between">
-                  <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/34x31" />
-                </div>
-                <div class="flex-1 flex justify-start">
-                  <div class="bg-gray-500 rounded-tl-xl rounded-tr-3xl  rounded-br-3xl p-2  justify-center items-center">
-                    <div class="text-white text-base font-sans font-normal leading-6 break-words items-center">
-                      こんにちは！元気だよ。最近新しい趣味を見つけて、ゆっくり楽しんでいます。最初は料理を習い始めました。料理は楽しくて創造的で、新しいレシピを試してみるのは楽しいです。君は何か新しいことを始めたことがありますか？
+              <div v-for="(message,index) in chatMessages" :key="index" class="justify-end">
+                <div class="flex p-1">
+                  <div v-if="message.sender === 'right'" class="flex-1 flex justify-end">
+                    <div class="flex flex-1 justify-end">
+                      <div v-if="message.type === 'text'" class="bg-blue-400 rounded-tr-xl rounded-bl-3xl rounded-tl-3xl  p-3 flex items-center">
+                        <div class="text-white text-base font-normal font-sans break-words leading-6 flex items-center">
+                          {{ message.text }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex items-center p-2.5 justify-between">
+                      
+                      <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/34x31" />
                     </div>
                   </div>
-                </div>
 
-              </div>
-            </div>
-
-            <div class="justify-end">
-              <div class="flex p-1">
-                <div class="flex-1 flex justify-end">
-                  <div class="bg-blue-400 rounded-tr-xl rounded-bl-3xl rounded-tl-3xl p-3 justify-center items-center">
-                    <div class="text-white text-base font-normal font-sans break-words leading-6 items-center">
-                      それは素晴らしいですね！週末に何を計画していますか？</div>
+                  <div v-if="message.sender === 'left'" class="flex-1 flex justify-start">
+                    <div class="flex items-center p-2.5 justify-between">
+                      <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/34x31" />
+                    </div>
+                    <div class="flex flex-1">
+                      <div v-if="message.type === 'text'" class="flex bg-[#9CA3AF] rounded-tl-xl rounded-tr-3xl  rounded-br-3xl pr-2 pl-2 pt-3 pb-3 justify-center items-center">
+                        <div class="text-white text-base font-sans font-normal leading-6 break-words flex items-center">
+                          {{ message.text }}
+                        </div>
+                      </div>
+                    </div>
+                    
                   </div>
-                </div>
-                <div class="flex items-center p-2.5 justify-between">
-                  <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/34x31" />
+              
+
+                 
                 </div>
               </div>
-            </div>
 
-            <div class="justify-end">
-              <div class="flex p-1">
-                <div class="flex-1 flex justify-end">
-                  <div class="bg-blue-400 rounded-tr-xl rounded-bl-3xl rounded-tl-3xl p-3 justify-center items-center">
-                    <div class="text-white text-base font-normal font-sans break-words leading-6 items-center">
-                      週末には映画を見に行くつもりです。君も一緒に来ない？</div>
-                  </div>
-                </div>
-                <div class="flex items-center p-2.5 justify-between">
-                  <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/34x31" />
-                </div>
-              </div>
-            </div>
-
-
-            <div class="justify-end">
-              <div class="flex p-1">
-                <div class="flex items-center p-2.5 justify-between">
-                  <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/34x31" />
-                </div>
-                <div class="flex-1 flex justify-start">
-                  <div class="bg-gray-500 rounded-tl-xl rounded-tr-3xl  rounded-br-3xl p-2  justify-center items-center ">
-                    <div class=" text-white text-base font-normal font-sans break-words leading-6 items-center">
-                      それは素晴らしいアイデアです！私も行きたい。</div>
-                  </div>
-                </div>
-
-              </div>
             </div>
 
           </div>
@@ -170,15 +143,18 @@ const messageList = [
 
 
 
-        <div class="w-80 bg-white pl-2.5 flex  items-start overflow-y-scroll flex-col gap-[16px]">
+        <div class="w-80 bg-white flex items-center overflow-y-scroll flex-col gap-[16px]">
+          <div class="flex flex-1 items-start flex-col">
+            <div class=" text-black text-lg font-sans font-normal leading-7 flex">伊藤</div>
+            <img class="w-64 rounded-xl mt-4" style="width: 272px; height: 257px; border-radius: 12px" src="https://via.placeholder.com/272x257" />
 
-          <div class="w-44 text-black text-lg font-sans font-normal leading-7 break-words">
-            伊藤</div>
-          <img class="w-64 rounded-xl" src="https://via.placeholder.com/272x257" />
-          <div class="w-40 text-black text-lg font-sans font-normal leading-6">
-            2021年9月22日に参加</div>
-          <div class="w-52 text-black text-lg font-sans font-normal leading-6 break-words">
-            こんにちは、伊藤です。趣味は音楽鑑賞、旅行、そして料理です。幼少期から音楽に興味を持ち、ピアノとギターを演奏することができます。</div>
+            <div class="w-40 mt-3 text-black text-lg font-sans font-normal leading-6 whitespace-nowrap">
+              2021年9月22日に参加</div>
+            <div class="w-52 mt-6 text-black text-lg font-sans font-normal leading-6 break-words">
+              こんにちは、伊藤です。趣味は音楽鑑賞、旅行、そして料理です。幼少期から音楽に興味を持ち、ピアノとギターを演奏することができます。
+            </div>
+          </div>
+          
 
         </div>
       </div>
@@ -186,5 +162,7 @@ const messageList = [
   </body>
 </template>
   
-<style scoped></style>
+<style scoped>
+
+</style>
   
