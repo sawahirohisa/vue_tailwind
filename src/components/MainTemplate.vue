@@ -1,6 +1,6 @@
 <script setup>
-  import { reactive,ref } from "vue";
-  const messageList = reactive([
+import { reactive, ref } from "vue";
+const messageList = reactive([
   {
     name: "佐藤",
     lastMessage: "またね"
@@ -28,27 +28,26 @@
 ])
 
 const chatMessages = reactive([
-  {sender: 'right',type:'text',text:'こんにちは！元気ですか？'},
-  {sender:'left',type:'text',text:'こんにちは！元気だよ。最近新しい趣味を見つけて、ゆっくり楽しんでいます。最初は料理を習い始めました。料理は楽しくて創造的で、新しいレシピを試してみるのは楽しいです。君は何か新しいことを始めたことがありますか？'},
-  {sender:'right',type:'text',text:'それは素晴らしいですね！週末に何を計画していますか？'},
-  {sender:'right',type:'text',text:'週末には映画を見に行くつもりです。君も一緒に来ない？'},
-  {sender:'left',type:'text',text:'それは素晴らしいアイデアです！私も行きたい。'}
+  { sender: 'right', text: 'こんにちは！元気ですか？' },
+  { sender: 'left', text: 'こんにちは！元気だよ。最近新しい趣味を見つけて、ゆっくり楽しんでいます。最初は料理を習い始めました。料理は楽しくて創造的で、新しいレシピを試してみるのは楽しいです。君は何か新しいことを始めたことがありますか？' },
+  { sender: 'right', text: 'それは素晴らしいですね！週末に何を計画していますか？' },
+  { sender: 'right', text: '週末には映画を見に行くつもりです。君も一緒に来ない？' },
+  { sender: 'left', text: 'それは素晴らしいアイデアです！私も行きたい。' }
 ])
 
 const mes = ref("")
+
 function sendMes() {
-  console.log(mes);
-
   chatMessages.push({ sender: 'right', text: mes.value },)
-
-  mes.value=""
+  mes.value = ""
 }
 
 const search = ref("")
-const filteredMessageList = ref([]);
+const filteredMessageList = ref(messageList);
+
 function findChat() {
-  filteredMessageList.value = messageList.filter(search => {
-    return search.name.toLowerCase().includes(search.value.toLowerCase());
+  filteredMessageList.value = messageList.filter(message => {
+    return message.name.toLowerCase().includes(search.value.toLowerCase());
   });
 }
 
@@ -73,11 +72,12 @@ function findChat() {
       <div class="flex flex-row flex-1 h-[calc(100vh-80px)]">
         <div class="bg-white flex flex-col w-64 overflow-y-scroll">
 
-          <input type="text" v-model="search" @onInput="findChat"  placeholder="検索" class="rounded-2xl m-2 p-3  border-gray-300 border-solid border-2 bg-white">
+          <input type="text" v-model="search" @input="findChat" placeholder="検索"
+            class="rounded-2xl m-2 p-3  border-gray-300 border-solid border-2 bg-white">
 
           <div class="flex-1 flex flex-col">
 
-            <div v-for="item in messageList" :key="item" class="flex flex-col">
+            <div v-for="item in filteredMessageList" :key="item" class="flex flex-col">
               <div class="flex bg-gray-300 ml-1 mr-1 p-px"></div>
 
               <div class="cursor-pointer flex p-2.5 hover:bg-gray-300">
@@ -86,12 +86,13 @@ function findChat() {
                 </div>
                 <div class="flex-1 flex flex-col justify-center">
                   <div class="text-black text-lg font-sans not-italic font-normal leading-7">{{ item.name }}</div>
-                  <div class="text-gray-600 text-base font-sans not-italic font-normal leading-6">{{ item.lastMessage }}</div>
+                  <div class="text-gray-600 text-base font-sans not-italic font-normal leading-6">{{ item.lastMessage }}
+                  </div>
                 </div>
               </div>
-             
+
             </div>
-            
+
           </div>
 
         </div>
@@ -102,7 +103,7 @@ function findChat() {
 
             <div class="justify-end">
 
-              <div v-for="(message,index) in chatMessages" :key="index" class="justify-end">
+              <div v-for="(message, index) in chatMessages" :key="index" class="justify-end">
                 <div class="flex p-1">
                   <div v-if="message.sender === 'right'" class="flex-1 flex justify-end">
                     <div class="flex flex-1 justify-end">
@@ -113,7 +114,7 @@ function findChat() {
                       </div>
                     </div>
                     <div class="flex items-center p-2.5 justify-between">
-                      
+
                       <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/34x31" />
                     </div>
                   </div>
@@ -123,15 +124,16 @@ function findChat() {
                       <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/34x31" />
                     </div>
                     <div class="flex flex-1">
-                      <div class="flex bg-[#9CA3AF] rounded-tl-xl rounded-tr-3xl  rounded-br-3xl pr-2 pl-2 pt-3 pb-3 justify-center items-center">
+                      <div
+                        class="flex bg-[#9CA3AF] rounded-tl-xl rounded-tr-3xl  rounded-br-3xl pr-2 pl-2 pt-3 pb-3 justify-center items-center">
                         <div class="text-white text-base font-sans font-normal leading-6 break-words flex items-center">
                           {{ message.text }}
                         </div>
                       </div>
                     </div>
-                    
-                  </div>   
-         
+
+                  </div>
+
                 </div>
               </div>
 
@@ -140,9 +142,10 @@ function findChat() {
           </div>
 
           <div class="mt-1 mb-1 flex p-1 flex-row justify-end">
-            <input type="text" v-model="mes" placeholder="メッセージ" class="flex flex-1 text-gray-600 rounded-xl bg-[#eaeaea] p-3.5 m-2.5">
-            <svg @click="sendMes" class="ml-1 mr-5 mt-2 cursor-pointer " width="59" height="59" viewBox="0 0 59 59" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+            <input type="text" v-model="mes" placeholder="メッセージ"
+              class="flex flex-1 text-gray-600 rounded-xl bg-[#eaeaea] p-3.5 m-2.5">
+            <svg @click="sendMes" class="ml-1 mr-5 mt-2 cursor-pointer " width="59" height="59" viewBox="0 0 59 59"
+              fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M29.5 31.9583L9.83329 19.6666V44.25H31.9583V49.1666H9.83329C8.48121 49.1666 7.32374 48.6852 6.3609 47.7224C5.39805 46.7595 4.91663 45.6021 4.91663 44.25V14.75C4.91663 13.3979 5.39805 12.2404 6.3609 11.2776C7.32374 10.3147 8.48121 9.83331 9.83329 9.83331H49.1666C50.5187 9.83331 51.6762 10.3147 52.639 11.2776C53.6019 12.2404 54.0833 13.3979 54.0833 14.75V31.9583H49.1666V19.6666L29.5 31.9583ZM29.5 27.0416L49.1666 14.75H9.83329L29.5 27.0416ZM46.7083 56.5416L43.2666 53.1L47.1385 49.1666H36.875V44.25H47.1385L43.2052 40.3166L46.7083 36.875L56.5416 46.7083L46.7083 56.5416ZM9.83329 19.6666V46.7083V31.9583V32.1427V14.75V19.6666Z"
                 fill="#6F6F6F" />
@@ -154,7 +157,8 @@ function findChat() {
         <div class="w-80 bg-white flex items-center overflow-y-scroll flex-col gap-[16px]">
           <div class="flex flex-1 items-start flex-col">
             <div class=" text-black text-lg font-sans font-normal leading-7 flex">伊藤</div>
-            <img class="w-64 rounded-xl mt-4" style="width: 272px; height: 257px; border-radius: 12px" src="https://via.placeholder.com/272x257" />
+            <img class="w-64 rounded-xl mt-4" style="width: 272px; height: 257px; border-radius: 12px"
+              src="https://via.placeholder.com/272x257" />
 
             <div class="w-40 mt-3 text-black text-lg font-sans font-normal leading-6 whitespace-nowrap">
               2021年9月22日に参加</div>
@@ -162,14 +166,12 @@ function findChat() {
               こんにちは、伊藤です。趣味は音楽鑑賞、旅行、そして料理です。幼少期から音楽に興味を持ち、ピアノとギターを演奏することができます。
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>
   </body>
 </template>
   
-<style scoped>
-
-</style>
+<style scoped></style>
   
